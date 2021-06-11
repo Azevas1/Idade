@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercicio 1</title>
+    <style>
+        body{
+            background: rgb(35, 109, 219);
+            font: normal 15pt Arial;
+        }
+
+        header{
+            text-align: center;
+            margin-top: 100px ;
+        }
+    
+        #sessao1{
+            
+            background: cornsilk;
+            border-radius: 10px;
+            height: 100%;
+            width: 500px;
+            margin:auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            padding-bottom: 15px;
+            box-sizing: border-box;
+            
+        }
+        #div1{
+           margin-top: 30px;
+           margin-bottom: 40px;
+        }
+        #div4{
+            text-align: center;
+        }
+        footer{
+            text-align: center;
+            margin-top: 300px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contador de Idade</h1>
+    </header>
+   <section id="sessao1">
+       <div id="div1">
+        Ano de nascimento: 
+        <input type="number" value="verificar" id="dataNasc">
+
+       </div>
+       <div id="div2"> 
+           Sexo:
+        <input type="radio" name="radsex" id="masc" checked > 
+        <label for="mas">Masculino</label>
+        <input type="radio" name="radsex" id="fem">
+        <label for="fem">Feminino</label> 
+       </div>
+       <input type="button" value="Verificar"  id="botao" onclick="verificar()"> 
+       <div id="div3"><p> Preencha os dados acima para o ver o resultado!</p></div>
+      
+    </section> 
+   <footer>
+    <p>&copy; LucasAzevedo</p>
+   </footer>
+
+   <script>
+
+       
+        function verificar(){
+            var dataAgora = new Date()
+            var ano = dataAgora.getFullYear()
+            var data = document.getElementById("dataNasc")
+            var res = document.getElementById("div3")
+           // var div4 = document.getElementById("div4")
+
+            if(data.value.length == 0 || data.value > ano ){
+                alert("[Erro] verifique os dados e insira corretamente")
+            }else{
+                var fsex = document.getElementsByName("radsex")
+                var suaIdade = ano - data.value
+                var gênero = ''
+                var img = document.createElement('img')
+                img.setAttribute('id', 'foto')
+                if(fsex[0].checked)  {
+                    gênero = "Homem"
+                    if(suaIdade >=0 && suaIdade < 3 ){
+                       img.setAttribute('src', 'bebeMasc.jpg')  //baby
+                    }else if(suaIdade < 10){
+                        img.setAttribute('src', 'criançaMasc.jpg')   //kid 
+                    }else if(suaIdade < 21){
+                        img.setAttribute('src', 'adolescenteMasc.jpg')   //adolecente
+                    }else if(suaIdade < 49){
+                        img.setAttribute('src', 'adultoMasc.jpg')  //adulto
+                    }else if(suaIdade < 61){
+                        img.setAttribute('src', '50anosMasc.jpg')  //50anos
+                    }else if(suaIdade < 10000){
+                        img.setAttribute('src', 'idosoMasc.jpg') //idoso
+
+                    }
+                }else if(fsex[1].checked){
+                    gênero = "Mulher"
+                    if(suaIdade >=0 && suaIdade < 3 ){
+                        img.setAttribute('src', 'bebeFem.jpg')   //baby
+                    }else if(suaIdade < 10){
+                        img.setAttribute('src', 'criançaFem.jpg')   //kid
+                    }else if(suaIdade < 21){
+                        img.setAttribute('src', 'adolescenteFem.jpg')   //adolecente
+                    }else if(suaIdade < 49){
+                        img.setAttribute('src', 'adultoFem.jpg')  //adulto
+                    }else if(suaIdade < 61){
+                        img.setAttribute('src', '50anosFem.jpg') //50anos
+                    }else if(suaIdade < 10000){
+                        img.setAttribute('src', 'idosaFem.jpg')//idoso
+
+                    }
+                
+
+                }
+
+                
+                res.style.textAlign = "center"
+                res.innerHTML = `detectamos ${gênero} com ${suaIdade} anos <br>`
+                res.appendChild(img)
+                        
+                    
+            }
+
+            
+
+
+            
+            
+           
+
+
+        }
+   </script>
+</body>
+</html>
